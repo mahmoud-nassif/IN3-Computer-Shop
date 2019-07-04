@@ -1,0 +1,57 @@
+<nav class="navbar navbar-light bg-light mt-0">
+  <span class="navbar-brand mb-0 h1">Filter Criteria</span>
+       <form class="form-inline my-2 my-lg-0">
+        <select (change)="onSelectChange($event)" class="form-control form-control-sm mr-5">
+          <option value="" disabled selected>CPU</option>
+          <option *ngFor="let item of CPU" value="{{item}}">{{item}}</option>
+        </select>
+
+        <select (change)="onSelectChange($event)" class="form-control form-control-sm mr-5">
+           <option value="" disabled selected>RAM</option>
+           <option *ngFor="let item of RAM" value="{{item}}">{{item}}</option>
+        </select>
+
+        <select (change)="onSelectChange($event)" class="form-control form-control-sm mr-5">
+           <option value="" disabled selected>Operating System</option>
+           <option *ngFor="let item of OpSys" value="{{item}}">{{item}}</option>
+           <option value="InSiFt">InSiFt</option>
+        </select>
+        <select (change)="onSelectChange($event)" class="form-control form-control-sm mr-5">
+          <option value="" disabled selected>Inches</option>
+          <option *ngFor="let item of Inches" value="{{item}}">{{item}}</option>
+        </select>
+      </form>
+</nav>
+
+<div *ngIf="filteredComputers.length==0" class="jumbotron jumbotron-fluid text-center">
+  <div class="container">
+    <h1 class="display-4">Unfortunately your lab isn't available yet</h1>
+  </div>
+</div>
+
+<div class="container  mt-2">
+  <div class="row">
+      <ng-container *ngFor="let item of filteredComputers;let i=index">
+          <div class="col-xs-12 col-sm-6 col-md-4 " style="margin-bottom: 1rem;">
+              <div class="card" style="width:auto">
+                  <img src="../../../assets/4bu26pa-hp-pavilion-x360-14-cd0007tu-14-inch-2-in-1-laptop_1.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h4 class="card-title">{{item.Company}}</h4>
+                    <p class="card-text">{{item.Product}}</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item">{{item.Type}}</li>
+                      <li class="list-group-item">{{item.CPU}}</li>
+                      <li class="list-group-item">{{item.RAM}}</li>
+                  </ul>
+                  <div class="card-footer">
+                    <div class="row">
+                      <div class="col"> <span>{{item.Price|currency:'USD':symbol}}</span></div>
+                      <div class="col"><a routerLink="/single" [queryParams]="{id:item._id}">Show More</a></div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </ng-container>
+  </div>
+</div>

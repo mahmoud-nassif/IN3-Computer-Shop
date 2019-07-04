@@ -1,0 +1,35 @@
+<div class="container  mt-2">
+    <div class="row">
+        <ng-container *ngFor="let item of computersPage;let i=index">
+            <div class="col-xs-12 col-sm-6 col-md-4 " style="margin-bottom: 1rem;">
+                <div class="card" style="width:auto">
+                    <img src="../../../assets/4bu26pa-hp-pavilion-x360-14-cd0007tu-14-inch-2-in-1-laptop_1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h4 class="card-title">{{item.Company}}</h4>
+                      <p class="card-text">{{item.Product}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{item.Type}}</li>
+                        <li class="list-group-item">{{item.CPU}}</li>
+                        <li class="list-group-item">{{item.RAM}}</li>
+                    </ul>
+                    <div class="card-footer">
+                      <div class="row">
+                        <div class="col"> <span>{{item.Price|currency:'USD':symbol}}</span></div>
+                        <div class="col"><a routerLink="/single" [queryParams]="{id:item._id}">Show More</a></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<app-pagination 
+[size]="computersSize" 
+[offset]="offset" 
+[limit]="limit" 
+(pageChange)="onPageChange($event)">
+</app-pagination>
+ 
+  
+
